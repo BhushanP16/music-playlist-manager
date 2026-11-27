@@ -1,20 +1,36 @@
-<<<<<<< HEAD
-# React + Vite
+# Music Playlist Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive playlist manager built with React, Tailwind CSS and Axios.
 
-Currently, two official plugins are available:
+## Live demo
+<Vercel URL>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- Song library with search and genre filter (data loaded via Axios from `public/songs.json`)
+- Create, rename, delete playlists (unique, required names; delete confirmation)
+- Add/remove songs, no duplicates, reorder with up/down buttons
+- Playlist summary, e.g. "8 songs · 32 min"
+- Now Playing bar (simulated playback with progress)
+- Loading, empty and no-results states
+- Fully responsive: 375px, 768px, 1440px
+- Playlists persisted in localStorage
 
-## React Compiler
+## Run locally
+npm install
+npm run dev
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Build
+npm run build
 
-## Expanding the ESLint configuration
+## Assumptions
+- Playlist names are compared case-insensitively
+- Playback is simulated (no audio); a timer advances the progress bar
+- Playlists store song IDs only; song details come from songs.json
+- Reordering is done with buttons (simpler and accessible on mobile)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# music-playlist-manager
->>>>>>> 4ba2e8b061a3b970da4a4b599732322ecfdc5d19
+## What I would improve
+- Drag-and-drop reordering (dnd-kit)
+- Shuffle / repeat, volume and seek bar
+- Unit tests (Vitest + React Testing Library)
+- Context/Zustand for global state, TypeScript
+- Toast notifications and keyboard shortcuts
