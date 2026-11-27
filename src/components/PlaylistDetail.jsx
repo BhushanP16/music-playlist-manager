@@ -1,36 +1,39 @@
-import { ArrowLeft, ChevronDown, ChevronUp, Music, Pencil, Play, Trash2, X } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ChevronUp, ListMusic, Music, Pencil, Play, Trash2, X } from 'lucide-react';
 import Panel from './Panel';
 import Button from './Button';
+import Cover from './Cover';
 import SongRow from './SongRow';
 import EmptyState from './EmptyState';
 import { summarize } from '../utils/format';
 
 export default function PlaylistDetail({
   playlist, songs, current, isPlaying, onBack, onRename, onDelete,
-  onPlay, onRemove, onMove, className = '',
+  onPlay, onRemove, onMove, onBrowse, className = '',
 }) {
   return (
-    <Panel
-      title={playlist.name}
-      subtitle={summarize(songs)}
-      className={className}
-      action={
-        <div className="flex shrink-0 gap-1">
-          <Button variant="ghost" size="icon" aria-label="Rename playlist" onClick={onRename}>
-            <Pencil size={16} />
-          </Button>
-          <Button variant="ghost" size="icon" aria-label="Delete playlist" onClick={onDelete}>
-            <Trash2 size={16} />
-          </Button>
+    <Panel className={className}>
+      <Button variant="ghost" size="sm" icon={ArrowLeft} onClick={onBack} className="-ml-2">
+        All playlists
+      </Button>
+
+      <div className="mt-3 flex items-center gap-4">
+        <Cover seed={playlist.id} size="xl" icon={ListMusic} />
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Playlist</p>
+          <h2 className="truncate text-xl font-bold text-white sm:text-2xl">{playlist.name}</h2>
+          <p className="text-sm text-slate-400">{summarize(songs)}</p>
         </div>
-      }
-    >
-      <div className="mb-3 flex gap-2">
-        <Button variant="secondary" size="sm" icon={ArrowLeft} onClick={onBack}>
-          All playlists
-        </Button>
+      </div>
+
+      <div className="mb-4 mt-5 flex flex-wrap gap-2">
         <Button size="sm" icon={Play} disabled={songs.length === 0} onClick={() => onPlay(songs, 0)}>
           Play all
+        </Button>
+        <Button variant="secondary" size="sm" icon={Pencil} onClick={onRename}>
+          Rename
+        </Button>
+        <Button variant="dangerSoft" size="sm" icon={Trash2} onClick={onDelete}>
+          Delete
         </Button>
       </div>
 
@@ -38,7 +41,12 @@ export default function PlaylistDetail({
         <EmptyState
           icon={Music}
           title="This playlist is empty"
-          text="Go to the Song Library and tap + to add songs."
+          text="Add songs from the Song Library using the + button."
+          action={
+            <Button variant="secondary" className="lg:hidden" onClick={onBrowse}>
+              Browse library
+            </Button>
+          }
         />
       ) : (
         <ul className="space-y-1">

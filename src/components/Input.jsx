@@ -10,12 +10,12 @@ export default function Input({ label, error, icon: Icon, className = '', ...pro
           />
         )}
         <input
-          className={`w-full rounded-xl border bg-slate-950 py-2.5 pr-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 ${
+          className={`w-full rounded-xl border bg-white/5 py-2.5 pr-3 text-sm text-white placeholder:text-slate-500 transition focus:bg-white/[0.07] focus:outline-none focus:ring-2 ${
             Icon ? 'pl-10' : 'pl-3'
           } ${
             error
-              ? 'border-red-500 focus:ring-red-500/40'
-              : 'border-slate-700 focus:ring-emerald-500/40'
+              ? 'border-red-500/70 focus:ring-red-500/30'
+              : 'border-white/10 focus:border-emerald-500/50 focus:ring-emerald-500/20'
           } ${className}`}
           {...props}
         />

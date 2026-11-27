@@ -22,7 +22,7 @@ export default function PlaylistsSection({
           action={<Button icon={Plus} onClick={onCreate}>Create playlist</Button>}
         />
       ) : (
-        <ul className="space-y-2">
+        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
           {playlists.map((p) => (
             <PlaylistCard
               key={p.id}
